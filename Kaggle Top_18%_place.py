@@ -1,3 +1,6 @@
+# competition description
+# https://www.kaggle.com/c/talkingdata-adtracking-fraud-detection
+
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import time
