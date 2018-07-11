@@ -55,8 +55,6 @@ len_train = len(train_df)
 
 print('Preprocessing...')
 
-# most_freq_hours_in_test_data = [4,5,9,10,13,14]
-# least_freq_hours_in_test_data = [6, 11, 15]
 
 train_df['click_time']= pd.to_datetime(train_df['click_time'])
 train_df['hour'] = train_df['click_time'].dt.hour.astype('uint8')
