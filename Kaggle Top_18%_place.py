@@ -3,9 +3,9 @@
 
 # I used both Amazon`s EC2 and Google Compute services (156 GB RAM and 24 CPU cores), as the datasets were large.
 # The training dataset consisted of 185 million rows with testing set consisting of around 51 million rows.
-# The dataset`s categorical variables were already encoded, hence the feature engineering was based on
-# mathematical procedures of counting unique values and frequencies. So out of the initial 5 features around 20 
-# additional features were generated. 
+# As the dataset`s categorical variables were already encoded, the feature engineering was based on
+# mathematical procedures of counting unique values and frequencies of the single variables and combination of variables.
+# So out of the initial 5 features around 20 additional features were generated. 
 # As an algorithm I used a single LightGBM model. 
 
 # With simply more computational power and a few additional lines of code the pretty solid increase (+0.11-0.13) 
