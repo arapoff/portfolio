@@ -1,14 +1,15 @@
 # competition description
 # https://www.kaggle.com/c/talkingdata-adtracking-fraud-detection
 
-# I used both Amazon`s EC2 and Google Compute services as the datasets were large.
+# I used both Amazon`s EC2 and Google Compute services (156 GB RAM and 24 CPU cores), as the datasets were large.
 # The training dataset consisted of 185 million rows with testing set consisting of around 51 million rows.
 # The dataset`s categorical variables were already encoded, hence the feature engineering was based on
 # mathematical procedures of counting unique values and frequencies. So out of the initial 5 features around 20 
 # additional features were generated. 
 # As an algorithm I used a single LightGBM model. 
 
-# With simply more computational power and a few additional lines of code the better score (+0.11-0.13) could be achieved.
+# With simply more computational power and a few additional lines of code the pretty solid increase (+0.11-0.13) 
+# in the score could have been achieved.
 
 from sklearn.model_selection import train_test_split
 import pandas as pd
@@ -16,7 +17,6 @@ import time
 import numpy as np
 import lightgbm as lgb
 import os
-os.environ['OMP_NUM_THREADS'] = '4'
 
 max_rounds = 1000
 early_stop = 50
@@ -27,8 +27,8 @@ output_file = 'lgbm_submit.csv'
 path = "../input/"
 
 dtypes = {
-    'ip'		:'uint32',
-    'app'		:'uint16',
+    	'ip'		:'uint32',
+    	'app'		:'uint16',
 	'device'	:'uint16',
 	'os'		:'uint16',
 	'channel'	:'uint16',
@@ -36,11 +36,11 @@ dtypes = {
 	'click_id'	:'uint32',
 	}
 
-print('Loading train.csv...')
+
 
 train_cols = ['ip', 'app', 'device', 'os', 'channel', 'is_attributed', 'click_time']
 train_df = pd.read_csv(path + 'train.csv', skiprows=range(1,144903891), nrows=20000000, dtype=dtypes, usecols=train_cols)
-#train_df = pd.read_csv(path + 'train.csv', dtype=dtypes, usecols=train_cols)
+
 
 print('Load test.csv...')
 test_cols = ['ip', 'app', 'device', 'os', 'click_time', 'channel', 'click_id']
@@ -245,9 +245,6 @@ cat_vars = ['app', 'device', 'os', 'channel', 'hour']
 
 train_df, val_df = train_test_split(train_df, train_size=.95, shuffle=False)
 y_train, y_val = train_test_split(y, train_size=.95, shuffle=False)
-
-print('Train size:', len(train_df))
-print('Valid size:', len(val_df))
 
 gc.collect()
 
